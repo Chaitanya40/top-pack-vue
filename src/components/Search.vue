@@ -38,7 +38,7 @@
               {{repo.stars}}
             </td>
             <td>
-              <a class="button" :disabled="repo.imported" :id="'import-'+ repo.id "  v-on:click="importRepo($event, repo)"> Import </a>
+              <a class="button" :disabled="repo.imported" :id="'import-' + repo.id "  v-on:click="importRepo($event, repo)"> Import </a>
             </td>
           </tr>
         </tbody>
@@ -75,16 +75,15 @@ export default {
       }
     },
     importRepo: function (e, repo) {
-      var elem = document.getElementById('import-'+repo.id)
+      var elem = document.getElementById('import-' + repo.id)
       elem.text = 'Importing....'
       axios.post('http://localhost:3000/import', {repo_name: repo.name, owner: repo.owner})
         .then(response => {
-          if(response.data.status === '200'){
+          if (response.data.status === '200') {
             elem.text = 'Imported'
-            elem.parentNode.parentNode.className+=' is-selected'
+            elem.parentNode.parentNode.className += ' is-selected'
             elem.disabled = true
-          }
-          else{
+          } else {
             elem.text = 'Import failed'
             console.log(response.data)
           }

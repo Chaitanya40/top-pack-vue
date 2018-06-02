@@ -33,10 +33,6 @@ export default {
       packages: []
     }
   },
-  methods: {
-    
-  },
-
   created: function () {
     var vm = this
     axios.get('http://localhost:3000/packages')
